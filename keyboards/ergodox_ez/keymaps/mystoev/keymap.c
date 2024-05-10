@@ -79,35 +79,35 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* Keymap 2: Experiment Layer
  *
- * ,---------------------------------------------------.           ,--------------------------------------------------.
- * |         |  F13 |  F14 | F15  |  F16 |  F17 |  F18 |           |  F19 |  F20 |  F21 |  F22 |  F23 |  F24 |        |
- * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
- * |         | WH_U |      | MS_U |      |      |      |           |      |      |   7  |   8  |   9  |   *  |        |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         | WH_D | MS_L | MS_D | MS_D |   `  |------|           |------|      |   4  |   5  |   6  |   +  |        |
- * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
- * |         |      | WH_L |      | WH_R |      |      |           |      |      |   1  |   2  |   3  |   \  |        |
- * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | TO(0) |      |      |      |      |                                       |      |    . |   0  |   =  | TO(0) |
- *   `-----------------------------------'                                       `----------------------------------'
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |   ~    |   1  |   2  |   3  |   4  |   5  | Play |           | Mute |   6  |   7  |   8  |   9  |   0  |  Del   |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * | TAB    |   Q  |   W  |   E  |   R  |   T  |  MWU |           |  MWD |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |CapsLock|   A  |Alt/S |Ctl/D |GUI/F |   G  |------|           |------|   H  |GUI/J | Ctl/K|Alt/L |  ;   |   '    |
+ * |--------+------+------+------+------+------|   =  |           |  -   |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | RShift |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |TO(0) |KC_LNG1|  -  |  Left| Right|                                       |  Up  | Down |   [  |   ]  | TO(0)  |
+ *   `----------------------------------'                                       `------------------------------------'
  *                                        ,-------------.       ,-------------.
- *                                        |      |      |       |      |      |
- *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
- *                                 |M_BTN1|M_BTN2|------|       |------|      |      |
- *                                 |      |      |      |       |      |      |      |
- *                                 `--------------------'       `--------------------'
+ *                                        | Prev | Next |       | Left | Right |
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 | Back |      | Vol+ |       |  Up  |        |      |
+ *                                 | Space| Esc  |------|       |------| Enter  |Space |
+ *                                 |      |      | Vol- |       | Down |        |      |
+ *                                 `--------------------'       `----------------------'
  */
 [EXPR] = LAYOUT_ergodox_pretty(
-  // left hand
-  KC_TRNS, KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,    KC_F19,  KC_F20,  KC_F21,  KC_F22,  KC_F23,  KC_F24,  KC_TRNS,
-  KC_TRNS, KC_WH_U, KC_TRNS, KC_MS_U, KC_TRNS, KC_TRNS, KC_TRNS,   KC_TRNS, KC_TRNS, KC_7,    KC_8,    KC_9,    KC_ASTR, KC_TRNS,
-  KC_TRNS, KC_WH_D, KC_MS_L, KC_MS_D, KC_MS_R, KC_TRNS,                     KC_TRNS, KC_4,    KC_5,    KC_6,    KC_PLUS, KC_TRNS,
-  KC_TRNS, KC_TRNS, KC_WH_L, KC_TRNS, KC_WH_R, KC_TRNS, KC_TRNS,   KC_TRNS, KC_AMPR, KC_1,    KC_2,    KC_3,    KC_BSLS, KC_TRNS,
-  TO(0),   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                                       KC_TRNS, KC_DOT,  KC_0,    KC_EQL,  TO(0),
-                                               KC_TRNS, KC_TRNS,     KC_TRNS, KC_TRNS,
-                                                        KC_TRNS,     KC_TRNS,
-                                      KC_BTN1, KC_BTN2, KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS
+  //left hand
+  KC_GRV,     KC_1,    KC_2,        KC_3,            KC_4,          KC_5,    KC_MPLY,              KC_MUTE,     KC_6,   KC_7,          KC_8,            KC_9,            KC_0,    KC_DEL,
+  KC_TAB,     KC_Q,    KC_W,        KC_E,            KC_R,          KC_T,    KC_WH_U,              KC_WH_D,     KC_Y,   KC_U,          KC_I,            KC_O,            KC_P,    KC_BSLS,
+  KC_CAPS,    KC_A,    LALT(KC_S),  LCTL_T(KC_D),    LGUI_T(KC_F),  KC_G,                                       KC_H,   RGUI_T(KC_J),  RCTL_T(KC_K),    RALT_T(KC_L),    KC_SCLN, KC_QUOT,
+  KC_LSFT,    KC_Z,    KC_X,        KC_C,            KC_V,          KC_B,    KC_EQL,               KC_MINS,     KC_N,   KC_M,          KC_COMM,         KC_DOT,          KC_SLSH, KC_RSFT,
+  TO(0),      KC_LNG1, KC_NO, KC_LEFT, KC_RGHT,                                                                         KC_UP,         KC_DOWN,         KC_LBRC,         KC_RBRC, TO(0),
+                                                                 KC_MPRV, KC_MNXT,         KC_LEFT, KC_RGHT,
+                                                                          KC_VOLU,         KC_UP,
+                                                         KC_BSPC, KC_ESC, KC_VOLD,         KC_DOWN, KC_ENT, KC_SPC
 ),
 };
 // clang-format on
@@ -119,9 +119,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             case KC_LNG1:
                 SEND_STRING(SS_DOWN(X_LALT) SS_DOWN(X_LCTL) SS_TAP(X_SPC) SS_UP(X_LALT) SS_UP(X_LCTL));
-                return false;
-            case KC_F13:
-                SEND_STRING("const fName = () => {"SS_TAP(X_ENT));
                 return false;
         }
     }
