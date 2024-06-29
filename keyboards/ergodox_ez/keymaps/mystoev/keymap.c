@@ -5,6 +5,7 @@ enum layers {
     BASE,  // default layer
     MOUSE,  // mouse
     EXPR,  // experiments
+    EXPR2,  // experiments aux
 };
 
 enum custom_keycodes {
@@ -88,8 +89,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|   =  |           |  -   |------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   M  |   ,  |   .  |  /   | RShift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   |TO(0) |KC_LNG1|  -  |  Left| Right|                                       |  Up  | Down |   [  |   ]  | TO(0)  |
+ *   |TO(0) |KC_LNG1|  -  |      |      |                                       |      |      |   [  |   ]  | TO(0)  |
  *   `----------------------------------'                                       `------------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        | Prev | Next |       | Left | Right |
+ *                                 ,------|------|------|       |------+--------+------.
+ *                                 | Back |      | Vol+ |       |  Up  |        |      |
+ *                                 | Space| Esc  |------|       |------| Enter  |Space |
+ *                                 |      |      | MO(3)|       | MO(3)|        |      |
+ *                                 `--------------------'       `----------------------'
+ */
+[EXPR] = LAYOUT_ergodox_pretty(
+  //left hand
+  KC_GRV,     KC_1,    KC_2,        KC_3,            KC_4,          KC_5,    KC_MPLY,              KC_MUTE,     KC_6,   KC_7,          KC_8,            KC_9,            KC_0,    KC_DEL,
+  KC_TAB,     KC_Q,    KC_W,        KC_E,            KC_R,          KC_T,    KC_WH_U,              KC_WH_D,     KC_Y,   KC_U,          KC_I,            KC_O,            KC_P,    KC_BSLS,
+  KC_CAPS,    KC_A,    LALT_T(KC_S),LCTL_T(KC_D),    LGUI_T(KC_F),  KC_G,                                       KC_H,   RGUI_T(KC_J),  RCTL_T(KC_K),    RALT_T(KC_L),    KC_SCLN, KC_QUOT,
+  KC_LSFT,    KC_Z,    KC_X,        KC_C,            KC_V,          KC_B,    KC_EQL,               KC_MINS,     KC_N,   KC_M,          KC_COMM,         KC_DOT,          KC_SLSH, KC_RSFT,
+  TO(0),      KC_LNG1, KC_NO,       KC_TRNS,         KC_TRNS,                                                           KC_TRNS,       KC_TRNS,         KC_LBRC,         KC_RBRC, TO(0),
+                                                                 KC_MPRV, KC_MNXT,         KC_LEFT, KC_RGHT,
+                                                                          KC_VOLU,         KC_UP,
+                                                         KC_BSPC, KC_ESC, MO(3),           MO(3), KC_ENT, KC_SPC
+),
+
+
+/* Keymap 3: Experiment Layer
+ *
+ * ,--------------------------------------------------.           ,--------------------------------------------------.
+ * |   ~    |   1  |   2  |   3  |   4  |   5  | Play |           | Mute |   6  |   7  |   8  |   9  |   0  |  Del   |
+ * |--------+------+------+------+------+-------------|           |------+------+------+------+------+------+--------|
+ * | TAB    |   Q  |   W  |  Up  |   R  |   T  |  MWU |           |  MWD |   Y  |   7  |   8  |   9  |   P  |   \    |
+ * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |CapsLock|   A  | Left | Down | Right|      |------|           |------|   H  |   4  |   5  |   6  |  ;   |   '    |
+ * |--------+------+------+------+------+------|   =  |           |  -   |------+------+------+------+------+--------|
+ * | LShift |   Z  |   X  |   C  |   V  |   B  |      |           |      |   N  |   1  |   2  |   3  |  /   | RShift |
+ * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |TO(0) |KC_LNG1|  -  |      |      |                                       |      |   0  |   .  |   ]  | TO(0)  |
+ *   `----------------------------------'                                       `-----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        | Prev | Next |       | Left | Right |
  *                                 ,------|------|------|       |------+--------+------.
@@ -98,13 +133,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                 |      |      | Vol- |       | Down |        |      |
  *                                 `--------------------'       `----------------------'
  */
-[EXPR] = LAYOUT_ergodox_pretty(
+[EXPR2] = LAYOUT_ergodox_pretty(
   //left hand
-  KC_GRV,     KC_1,    KC_2,        KC_3,            KC_4,          KC_5,    KC_MPLY,              KC_MUTE,     KC_6,   KC_7,          KC_8,            KC_9,            KC_0,    KC_DEL,
-  KC_TAB,     KC_Q,    KC_W,        KC_E,            KC_R,          KC_T,    KC_WH_U,              KC_WH_D,     KC_Y,   KC_U,          KC_I,            KC_O,            KC_P,    KC_BSLS,
-  KC_CAPS,    KC_A,    LALT(KC_S),  LCTL_T(KC_D),    LGUI_T(KC_F),  KC_G,                                       KC_H,   RGUI_T(KC_J),  RCTL_T(KC_K),    RALT_T(KC_L),    KC_SCLN, KC_QUOT,
-  KC_LSFT,    KC_Z,    KC_X,        KC_C,            KC_V,          KC_B,    KC_EQL,               KC_MINS,     KC_N,   KC_M,          KC_COMM,         KC_DOT,          KC_SLSH, KC_RSFT,
-  TO(0),      KC_LNG1, KC_NO, KC_LEFT, KC_RGHT,                                                                         KC_UP,         KC_DOWN,         KC_LBRC,         KC_RBRC, TO(0),
+  KC_GRV,     KC_1,    KC_2,        KC_3,           KC_4,          KC_5,    KC_MPLY,              KC_MUTE,     KC_6,   KC_7,          KC_8,            KC_9,            KC_0,    KC_DEL,
+  KC_TAB,     KC_Q,    KC_W,        KC_UP,          KC_R,          KC_T,    KC_WH_U,              KC_WH_D,     KC_Y,   KC_7,          KC_8,            KC_9,            KC_P,    KC_BSLS,
+  KC_CAPS,    KC_A,    KC_LEFT,     KC_DOWN,        KC_RIGHT,      KC_TRNS,                                    KC_H,   KC_4,          KC_5,            KC_6,            KC_SCLN, KC_QUOT,
+  KC_LSFT,    KC_Z,    KC_X,        KC_C,           KC_V,          KC_B,    KC_EQL,               KC_MINS,     KC_N,   KC_1,          KC_2,            KC_3,            KC_SLSH, KC_RSFT,
+  TO(0),      KC_LNG1, KC_NO,       KC_TRNS,        KC_TRNS,                                                           KC_TRNS,       KC_0,            KC_DOT,          KC_RBRC, TO(0),
                                                                  KC_MPRV, KC_MNXT,         KC_LEFT, KC_RGHT,
                                                                           KC_VOLU,         KC_UP,
                                                          KC_BSPC, KC_ESC, KC_VOLD,         KC_DOWN, KC_ENT, KC_SPC
